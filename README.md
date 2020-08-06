@@ -4,7 +4,7 @@
     <img src="./cep_logo.jpg">
 </p>
 <p align="center">
-   v2.4
+   v2.51
    <br>
    Copyright 2020 Massachusetts Institute of Technology
 </p>
@@ -163,7 +163,7 @@ Install the required dependencies by running the following command:
 
 As one might be aware: the endianess usage is not consistent thru out the design, expesially where Chisel wrappers are used to connect to various HW cores. For some cores, little endian is used for loading keys/plain text but big-endian is used to produce cipher text as output. This creates confusion and inconsistent as one might try to understand/follow SW driver for these cores. Also, please note, RISCV is little endian.
 
-As of this release CEP v2.4 and later, unless otherwise specify, big endian is used thru out the design to match key/plain/ciphertext network order.
+As of release CEP v2.4 and later, unless otherwise specify, big endian is used thru out the design to match key/plain/ciphertext network order.
 This makes it consistent and easier to debug when key/plain text are printed to match against registers.
 
 ```
@@ -233,7 +233,7 @@ $ make -f Makefile.vc707-u500devkit mcs
 
 Build time will vary based on the machine, but could be in the range of 1 to 2 hours.  The first step will create the Chisel-generated verilog with the second creating the bitfile for the VC-707.
 
-Following the b0uild process and assuming the [Digilent Adept 2 drivers](https://reference.digilentinc.com/reference/software/adept/start?redirect=1#software_downloads) have been installed, you can program a VC-707 attached via USB using the following script:
+Following the build process and assuming the [Digilent Adept 2 drivers](https://reference.digilentinc.com/reference/software/adept/start?redirect=1#software_downloads) have been installed, you can program a VC-707 attached via USB using the following script:
 
 ```sh
 ./program_card.sh
@@ -282,7 +282,7 @@ You should see the following logo/text appear:
   ./+++++++++++oo+++:  +oo++o++++o+o+oo+oo.- `s+++s`-           
     .--:---:-:-::-::`  -::::::::::::::::::.   :::::.            
                                                                 
-              Common Evaluation Platform v2.4                   
+              Common Evaluation Platform v2.51
   Copyright (C) 2020 Massachusetts Institute of Technology     
                                                                 
        Built upon the SiFive Freedom U500 Platform using        
@@ -310,7 +310,7 @@ At the command prompt, you can run the CEP diagnostics by commanding `cep_diag`.
 A partial output should be similar to:
 
 ```sh
-*** CEP Tag=CEPTest CEP HW VERSION = v2.4 was built on May 15 2020*
+*** CEP Tag=CEPTest CEP HW VERSION = v2.51 was built on May 15 2020*
  CEP FPGA Physical=0x70000000 -> Virtual=0x000000200034d000
 gSkipInit=0/0
 gverbose=0/0
@@ -442,6 +442,12 @@ v2.4 - (5 June 2020)
 * AES-derived and FIR-derived generated cores added
 * Misc. bug fixes
 
+v2.5 - (31 July 2020)
+* All Unit-level testbenches have been expanded to optional support the Logic Locking Keying Interface (LLKI)
+  for both cycle-level and transactional-level modes
+
+v2.51 - (7 August 2020)
+* Legacy unused core wrapper files (axi4lite and wb) removed
 
 ## Licensing
 The CEP been developed with a goal of using components with non-viral, open source licensing whenever possible.  When not feasible (such as Linux), pointers to reference repositories are given using the [get_external_dependencies.sh](./get_external_dependencies.sh) script.  
